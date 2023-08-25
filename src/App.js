@@ -1,12 +1,17 @@
 import "./App.css";
-import TodoList from "./Components/TodoList";
+import NavBar from "./Components/NavBar";
+import TodoApp from "./Components/TodoApp";
+import NoteApp from "./Components/NoteApp";
+import Home from "./Components/Home";
 
 function App() {
   return (
-    <div className="todo-app">
-      <h1>To-Do List</h1>
-      <TodoList />
-    </div>
+    <>
+      <NavBar />
+      <Home />
+      <TodoApp />
+      <NoteApp />
+    </>
   );
 }
 
