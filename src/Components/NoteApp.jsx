@@ -2,7 +2,9 @@ import React from 'react'
 
 function NoteApp() {
   return (
-    <div>NoteApp</div>
+    <div>
+        <h1>Note App</h1>
+    </div>
   )
 }
 
