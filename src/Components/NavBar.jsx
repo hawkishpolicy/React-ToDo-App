@@ -29,6 +29,13 @@ function NavBar() {
             <a class="nav-link active" aria-current="page" href="/notes">
               Notes
             </a>
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="/log-in"
+            >
+              Login
+            </a>
           </div>
         </div>
       </div>

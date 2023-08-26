@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import {NavBar, Home, TodoApp, NoteApp} from './'
+import {NavBar, Home, Login, TodoApp, NoteApp} from './'
 
 function Main() {
   return (
@@ -8,6 +8,7 @@ function Main() {
     <NavBar />
     <Routes>
       <Route path="/home" element={<Home />} />
+      <Route path="/log-in" element={<Login />} />
       <Route path="/to-do" element={<TodoApp />} />
       <Route path="/notes" element={<NoteApp />} />
     </Routes>
