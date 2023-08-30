@@ -1,6 +1,11 @@
 export { default as Main } from "./Main";
 export { default as NavBar } from "./NavBar";
 export { default as TodoApp } from "./TodoApp";
+export { default as TodoForm } from "./TodoForm";
+export { default as Todo } from "./Todo";
 export { default as NoteApp } from "./NoteApp";
-export { default as Home } from "./Home";
-export { default as Login } from "./Login";
+export { default as NotesList } from "./NotesList";
+export { default as Note } from "./Note";
+export { default as AddNote } from "./AddNote";
+export { default as SearchBar } from "./SearchBar";
+export { default as Header } from "./Header";

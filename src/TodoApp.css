@@ -7,12 +7,11 @@
 }
 
 body {
-  background: linear-gradient(
-    90deg,
-    rgb(105, 104, 106) 0%,
-    rgb(61, 63, 70) 100%
-  );
+  background: white;
 }
+
+/* To-Do App Styling Below */
+
 .todo-app {
   display: flex;
   flex-direction: column;
@@ -26,7 +25,7 @@ body {
   padding-bottom: 32px;
 }
 
-h1 {
+.todo-title {
   margin: 32px 0;
   color: #fff;
   font-size: 24px;
@@ -137,11 +136,123 @@ h1 {
   cursor: pointer;
 }
 
-.delete-icon {
+.todo-delete-icon {
   margin-right: 5px;
   color: #fff;
 }
 
 .edit-icon {
   color: #fff;
+}
+
+/* Note-App Styling Below */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.dark-mode {
+  background-color: #282c34;
+}
+.dark-mode h1 {
+  color: white;
+}
+
+.container {
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  right: 3%;
+}
+
+.notes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 2rem;
+}
+
+.note.new {
+  background-color: #8fdd71;
+}
+
+textarea {
+  border: none;
+  resize: none;
+  background-color: ;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.save {
+  background-color: #e1e1e1;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.save:hover {
+  background-color: #c1c1c1;
+  cursor: pointer;
+}
+.note {
+  background-color: #fef68a;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 1rem;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  white-space: pre-wrap;
+}
+
+.note-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-icon {
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  color: red;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background-color: #e1e1e1;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.search input {
+  border: none;
+  outline: none;
+  margin-left: 0.5rem;
+  background-color: #e1e1e1;
+}
+
+.search input:focus {
+  outline: none;
 }
