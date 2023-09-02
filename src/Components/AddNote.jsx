@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { useNoteAppContext } from '../provider/NoteAppProvider'
 
-function AddNote({ handleAddNote }) {
+function AddNote() {
+  const { addNote } = useNoteAppContext()
   const [noteText, setNoteText] = useState("");
 
   const [noteTitle, setNoteTitle] = useState("");
@@ -23,7 +25,7 @@ function AddNote({ handleAddNote }) {
   };
   const handleSaveClick = () => {
     if (noteText.trim().length > 0) {
-      handleAddNote(noteText, noteTitle);
+      addNote(noteText, noteTitle);
       setNoteText("");
       setNoteTitle("");
     }

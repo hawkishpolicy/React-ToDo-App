@@ -193,7 +193,6 @@ body {
 textarea {
   border: none;
   resize: none;
-  background-color: ;
 }
 
 textarea:focus {
@@ -212,7 +211,6 @@ textarea:focus {
   cursor: pointer;
 }
 .note {
-  background-color: #fef68a;
   margin-bottom: 10px;
   border-radius: 10px;
   padding: 1rem;
@@ -240,19 +238,22 @@ textarea:focus {
 .search {
   display: flex;
   align-items: center;
-  background-color: #e1e1e1;
+  background-color: white;
   border-radius: 10px;
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
 }
 
 .search input {
   border: none;
   outline: none;
   margin-left: 0.5rem;
-  background-color: #e1e1e1;
+  background-color: transparent;
 }
 
 .search input:focus {
   outline: none;
+
+  /* color: #8efe8a; */
 }

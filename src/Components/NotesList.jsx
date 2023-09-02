@@ -1,15 +1,24 @@
 import React from "react";
 import Note from "./Note";
 import AddNote from "./AddNote";
+import { useNoteAppContext } from '../provider/NoteAppProvider'
 
+function NotesList() {
+  const { notes } = useNoteAppContext()
 
-function NotesList({ notes, handleAddNote, handleDeleteNote }) {
   return (
     <div className="notes-list">
       {notes.map((note) => (
-        <Note id={note.id} title={note.title} text={note.text} date={note.date} handleDeleteNote={handleDeleteNote} />
+        <Note
+          key={note.id}
+          id={note.id}
+          title={note.title}
+          text={note.text}
+          date={note.date}
+          color={note.color}
+        />
       ))}
-    <AddNote handleAddNote={handleAddNote} />
+      <AddNote />
     </div>
   );
 }
