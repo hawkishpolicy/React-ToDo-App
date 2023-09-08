@@ -1,14 +1,34 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function NavBar() {
+function NavBar({ handleSearchNote }) {
+  
+  NavBar.propTypes = {
+    handleSearchNote: PropTypes.func.isRequired,
+  };
+
   return (
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/home">
-          Brand
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/note-app">
+          <i
+            className="bi bi-card-checklist"
+            style={{ fontSize: "2.5rem" }}
+          ></i>
         </a>
+        <form className="d-flex" role="search">
+          <input
+            className="form-control me-2"
+            type="search"
+            id="searchBar"
+            placeholder="Search"
+            aria-label="Search"
+            onChange={(event) => handleSearchNote(event.target.value)}
+          />
+        </form>
+
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavAltMarkup"
@@ -16,27 +36,25 @@ function NavBar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          class="collapse navbar-collapse"
+          className="collapse navbar-collapse d-flex justify-content-end"
           id="navbarNavAltMarkup"
         >
-          <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="/to-do">
-              To-Do <i class="bi bi-card-checklist"></i>
-            </a>
-            <a class="nav-link active" aria-current="page" href="/notes">
-              Notes <i class="bi bi-journal-bookmark-fill"></i>
-            </a>
+          <div className="navbar-nav">
             <a
-              class="nav-link active"
+              className="nav-link active "
               aria-current="page"
               href="/log-in"
               data-bs-toggle="modal"
               data-bs-target="#loginModal"
             >
-              Login <i class="bi bi-person-circle"></i>
+              <i
+                className="bi bi-person-circle align-text-center"
+                style={{ fontSize: "2.5rem" }}
+                id="login-icon"
+              ></i>
             </a>
           </div>
         </div>
@@ -45,63 +63,59 @@ function NavBar() {
       {/* Modal Code Below */}
 
       <div
-        class="modal fade"
+        className="modal fade"
         id="loginModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="loginModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="loginModalLabel">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="loginModalLabel">
                 Login
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <form>
-                <div class="form-floating mb-3">
+                <div className="form-floating mb-3">
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="inputEmail"
                     aria-describedby="emailHelp"
                     placeholder="Email Address"
                     required
                   />
-                  <label for="inputEmail">
-                    Email Address
-                  </label>
+                  <label htmlFor="inputEmail">Email Address</label>
                 </div>
-                <div class="form-floating mb-3">
+                <div className="form-floating mb-3">
                   <input
                     type="password"
-                    class="form-control"
+                    className="form-control"
                     id="inputPassword"
                     placeholder="Password"
                     required
                   />
-                  <label for="inputPassword">
-                    Password
-                  </label>
+                  <label htmlFor="inputPassword">Password</label>
                 </div>
               </form>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-target="#registerModal"
                 data-bs-toggle="modal"
               >
                 New User?
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" className="btn btn-primary">
                 Submit
               </button>
             </div>
@@ -109,68 +123,64 @@ function NavBar() {
         </div>
       </div>
       <div
-        class="modal fade"
+        className="modal fade"
         id="registerModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="registerModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="registerModalLabel">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="registerModalLabel">
                 Register
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <form>
-                <div class="form-floating mb-3">
+                <div className="form-floating mb-3">
                   <input
                     type="email"
-                    class="form-control"
-                    id="inputEmail"
+                    className="form-control"
+                    id="inputRegisterEmail"
                     aria-describedby="emailHelp"
                     placeholder="Email Address"
                     required
                   />
-                  <label for="inputEmail">
-                    Email Address
-                  </label>
+                  <label htmlFor="inputRegisterEmail">Email Address</label>
                 </div>
-                <div class="form-floating mb-3">
+                <div className="form-floating mb-3">
                   <input
                     type="password"
-                    class="form-control"
-                    id="inputPassword"
+                    className="form-control"
+                    id="inputRegisterPassword"
                     placeholder="Password"
                     required
                   />
-                  <label for="inputPassword">
-                    Password
-                  </label>
+                  <label htmlFor="inputRegisterPassword">Password</label>
                 </div>
-                <div class="form-floating mb-3">
+                <div className="form-floating mb-3">
                   <input
                     type="password"
-                    class="form-control"
-                    id="reInputPassword"
+                    className="form-control"
+                    id="reInputRegisterPassword"
                     placeholder="Re-type Password"
                     required
                   />
-                  <label for="reInputPassword">
+                  <label htmlFor="reInputRegisterPassword">
                     Re-type Password
                   </label>
                 </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">
+            <div className="modal-footer">
+              <button type="button" className="btn btn-primary">
                 Submit
               </button>
             </div>
@@ -180,5 +190,6 @@ function NavBar() {
     </nav>
   );
 }
+
 
 export default NavBar;

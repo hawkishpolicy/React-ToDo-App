@@ -1,7 +1,7 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
 import { nanoid } from "nanoid";
 
-const DEFAULT_NOTE_COLOR = '#eeeee4'
+const DEFAULT_NOTE_COLOR = "#eeeee4";
 
 const NoteAppProviderContext = createContext({
   notes: [],
@@ -17,13 +17,13 @@ const NoteAppProviderContext = createContext({
   },
   deleteNote: (_id) => {
     // no-op
-  }
-})
+  },
+});
 
-export const useNoteAppContext = () => useContext(NoteAppProviderContext)
+export const useNoteAppContext = () => useContext(NoteAppProviderContext);
 
 const NoteAppProvider = ({ children }) => {
-  const [currentNoteId, setCurrentNoteId] = useState(null)
+  const [currentNoteId, setCurrentNoteId] = useState(null);
   const [notes, setNotes] = useState([
     {
       id: nanoid(),
@@ -73,7 +73,7 @@ const NoteAppProvider = ({ children }) => {
       }
       return note;
     });
-    setCurrentNoteId(null)
+    setCurrentNoteId(null);
 
     setNotes(editedNote);
     console.log("passed in color", color);
@@ -81,20 +81,28 @@ const NoteAppProvider = ({ children }) => {
     console.log("array of notes", editedNote);
   };
 
-  const currentNoteColor = (currentNoteId && notes.find(note => note.id === currentNoteId)?.color) || DEFAULT_NOTE_COLOR
+  const currentNoteColor =
+    (currentNoteId && notes.find((note) => note.id === currentNoteId)?.color) ||
+    DEFAULT_NOTE_COLOR;
 
   useEffect(() => {
     localStorage.setItem("react-notes-app-data", JSON.stringify(notes));
   }, [notes]);
 
-  return <NoteAppProviderContext.Provider value={{
-    notes,
-    setCurrentNoteId,
-    updateNoteColor,
-    addNote,
-    deleteNote,
-    currentNoteColor,
-  }}>{children}</NoteAppProviderContext.Provider>
-}
+  return (
+    <NoteAppProviderContext.Provider
+      value={{
+        notes,
+        setCurrentNoteId,
+        updateNoteColor,
+        addNote,
+        deleteNote,
+        currentNoteColor,
+      }}
+    >
+      {children}
+    </NoteAppProviderContext.Provider>
+  );
+};
 
-export default NoteAppProvider
+export default NoteAppProvider;

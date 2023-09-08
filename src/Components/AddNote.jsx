@@ -48,47 +48,49 @@ function AddNote() {
     //   </div>
     <div>
       <div
-        class="modal fade"
+        className="modal fade"
         id="newNoteModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="newNoteModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="newNoteModalLabel">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="newNoteModalLabel">
                 Create a New Note
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <textarea
                 rows="1"
                 cols="55"
                 placeholder="Title"
                 onChange={handleTitleChange}
                 value={noteTitle}
+                id="noteTitle"
               ></textarea>
-              <hr class="border border-1 opacity-50"></hr>
+              <hr className="border border-1 opacity-50"></hr>
               <textarea
                 rows="10"
                 cols="55"
                 placeholder="Type to add a note..."
                 onChange={handleTextChange}
                 value={noteText}
+                id="noteText"
               ></textarea>
             </div>
-            <div class="modal-footer justify-content-between">
+            <div className="modal-footer justify-content-between">
               <small>{textCharacterLimit - noteText.length}</small>
               <button
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 onClick={handleSaveClick}
               >
                 Save

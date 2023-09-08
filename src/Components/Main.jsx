@@ -1,14 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { NavBar, TodoApp, NoteApp } from "./";
+import { NoteApp } from "./";
 
 function Main() {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <Routes>
-        <Route path="/to-do" element={<TodoApp />} />
-        <Route path="/notes" element={<NoteApp />} />
+        <Route path="/note-app" element={<NoteApp />} />
       </Routes>
     </>
   );
