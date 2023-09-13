@@ -5,7 +5,6 @@ import { NoteApp } from "./";
 function Main() {
   return (
     <>
-      {/* <NavBar /> */}
       <Routes>
         <Route path="/note-app" element={<NoteApp />} />
       </Routes>

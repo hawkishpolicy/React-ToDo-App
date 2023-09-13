@@ -32,20 +32,6 @@ function AddNote() {
   };
 
   return (
-    // <div className="note new">
-    //   <textarea
-    //     rows="8"
-    //     cols="10"
-    //     placeholder="Type to add a note..."
-    //     onChange={handleChange}
-    //     value={noteText}
-    //   ></textarea>
-    //   <div className="note-footer">
-    //     <small>{characterLimit - noteText.length}</small>
-    //     <button className="save" onClick={handleSaveClick}>
-    //       Save
-    //     </button>
-    //   </div>
     <div>
       <div
         className="modal fade"
@@ -92,6 +78,7 @@ function AddNote() {
                 type="button"
                 className="btn btn-primary"
                 onClick={handleSaveClick}
+                data-bs-dismiss="modal"
               >
                 Save
               </button>

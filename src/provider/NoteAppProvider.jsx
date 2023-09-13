@@ -1,34 +1,48 @@
 import React, { useState, useContext, createContext, useEffect } from "react";
 import { nanoid } from "nanoid";
+import PropTypes from "prop-types";
 
 const DEFAULT_NOTE_COLOR = "#eeeee4";
 
 const NoteAppProviderContext = createContext({
   notes: [],
   currentNoteColor: DEFAULT_NOTE_COLOR,
+  // eslint-disable-next-line no-unused-vars
   updateNoteColor: (_color) => {
     // no-op
   },
+  // eslint-disable-next-line no-unused-vars
   setCurrentNoteId: (_id) => {
     // no-op
   },
+  // eslint-disable-next-line no-unused-vars
   addNote: (_text, _title) => {
     // no-op
   },
+  // eslint-disable-next-line no-unused-vars
   deleteNote: (_id) => {
     // no-op
   },
+  // eslint-disable-next-line no-unused-vars
+  filterNotes: (_searchText) => {
+    // no-op
+  }
 });
 
 export const useNoteAppContext = () => useContext(NoteAppProviderContext);
 
 const NoteAppProvider = ({ children }) => {
+  NoteAppProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+  const [searchText, setSearchText] = useState("");
   const [currentNoteId, setCurrentNoteId] = useState(null);
   const [notes, setNotes] = useState([
     {
       id: nanoid(),
       title: "Home",
       text: "This is my first note!",
+      todoItems: [{id: nanoid(), item: "Take out trash", completed: false}, {id: nanoid(), item: "Call Ricky", completed: false}],
       date: "05/05/2021",
       color: DEFAULT_NOTE_COLOR,
     },
@@ -36,17 +50,25 @@ const NoteAppProvider = ({ children }) => {
       id: nanoid(),
       title: "Work",
       text: "This is my second note!",
+      todoItems: [{id: nanoid(), item: "Finish Note App", completed: false}, {id: nanoid(), item: "Finish Code Review", completed: false}],
       date: "10/05/2021",
       color: "#8acefe",
     },
     {
       id: nanoid(),
-      title: "School",
+      title: "Running",
       text: "This is my third note!",
+      todoItems: [{id: nanoid(), item: "Threshold Workout", completed: false}, {id: nanoid(), item: "Long Run Saturday", completed: false}],
       date: "15/05/2021",
       color: "#8efe8a",
     },
   ]);
+
+  // const todoList = notes.map((note) => {
+  //   return note.todoItems.map((todo) => {
+  //     return todo;
+  //   });
+  // });
 
   const addNote = (text) => {
     const date = new Date();
@@ -54,6 +76,7 @@ const NoteAppProvider = ({ children }) => {
       id: nanoid(),
       title: text,
       text: text,
+      todoItems: [{id: nanoid(), item: text, completed: false}],
       date: date.toLocaleDateString(),
       color: DEFAULT_NOTE_COLOR,
     };
@@ -76,9 +99,6 @@ const NoteAppProvider = ({ children }) => {
     setCurrentNoteId(null);
 
     setNotes(editedNote);
-    console.log("passed in color", color);
-    console.log("passed in id", currentNoteId);
-    console.log("array of notes", editedNote);
   };
 
   const currentNoteColor =
@@ -98,6 +118,9 @@ const NoteAppProvider = ({ children }) => {
         addNote,
         deleteNote,
         currentNoteColor,
+        searchText,
+        setSearchText,
+        // todoList,
       }}
     >
       {children}

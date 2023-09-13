@@ -24,6 +24,9 @@ body {
 .dark-mode .header {
   color: white;
 }
+.dark-mode .footer {
+  color: white;
+}
 
 .container {
   max-width: 960px;
@@ -92,31 +95,44 @@ textarea:focus {
   align-items: center;
 }
 
-.delete-icon {
+.bi-trash3-fill {
   cursor: pointer;
 }
 
-.delete-icon:hover {
+.bi-trash3-fill:hover {
   color: red;
 }
 
-.search {
-  display: flex;
-  align-items: center;
-  background-color: white;
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+.bi-palette-fill {
+  cursor: pointer;
 }
 
-.search input {
-  border: none;
-  outline: none;
-  margin-left: 0.5rem;
+.bi-palette-fill:hover {
+  color: white;
+}
+
+.bi-pencil-fill {
+  cursor: pointer;
+}
+
+.bi-pencil-fill:hover {
+  color: white;
+}
+
+.bi-three-dots-vertical {
+  cursor: pointer;
+}
+
+.bi-three-dots-vertical:hover {
+  color: white;
+}
+
+.list-group-item {
+  padding: 0.75rem 0.25rem;
   background-color: transparent;
 }
 
-.search input:focus {
-  outline: none;
+.dropdown-menu {
+  background-color: #424442c8;
+  min-width: 5rem;
 }

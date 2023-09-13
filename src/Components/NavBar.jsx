@@ -1,11 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useNoteAppContext } from "../provider/NoteAppProvider";
 
-function NavBar({ handleSearchNote }) {
-  
-  NavBar.propTypes = {
-    handleSearchNote: PropTypes.func.isRequired,
-  };
+function NavBar() {
+  const { searchText, setSearchText } = useNoteAppContext();
+  function handleSearch(event) {
+    setSearchText(event.target.value);
+  }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -23,7 +23,8 @@ function NavBar({ handleSearchNote }) {
             id="searchBar"
             placeholder="Search"
             aria-label="Search"
-            onChange={(event) => handleSearchNote(event.target.value)}
+            value={searchText}
+            onChange={handleSearch}
           />
         </form>
 
@@ -31,16 +32,16 @@ function NavBar({ handleSearchNote }) {
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="collapse navbar-collapse d-flex justify-content-end"
-          id="navbarNavAltMarkup"
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
         >
           <div className="navbar-nav">
             <a
@@ -190,6 +191,5 @@ function NavBar({ handleSearchNote }) {
     </nav>
   );
 }
-
 
 export default NavBar;

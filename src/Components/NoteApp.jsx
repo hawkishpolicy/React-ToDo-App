@@ -1,24 +1,17 @@
 import React, { useState } from "react";
-import { NotesList, Header, ColorPalette, NavBar } from "./";
-import NoteAppProvider, { useNoteAppContext } from '../provider/NoteAppProvider'
+import { NotesList, Header, ColorPalette, NavBar, EditNote, AddNote } from "./";
+import NoteAppProvider from "../provider/NoteAppProvider";
 
 function NoteApp() {
-  const [searchText, setSearchText] = useState("");
   const [darkMode, setDarkMode] = useState(false);
-  const { notes } = useNoteAppContext()
 
   return (
     <NoteAppProvider>
-      <NavBar handleSearchNote={setSearchText}/>
+      <NavBar />
       <div className={`${darkMode && "dark-mode"}`}>
         <div className="container">
           <Header handleToggleDarkMode={setDarkMode} />
-          {/* <SearchBar handleSearchNote={setSearchText} /> */}
-          <NotesList
-            notes={notes.filter((note) =>
-              note.text.toLowerCase().includes(searchText) || note.title.toLowerCase().includes(searchText)
-            )}
-          />
+          <NotesList />
           <div className="footer">
             <i
               className="bi bi-plus-square"
@@ -30,6 +23,8 @@ function NoteApp() {
         </div>
       </div>
       <ColorPalette />
+      <EditNote />
+      <AddNote />
     </NoteAppProvider>
   );
 }
