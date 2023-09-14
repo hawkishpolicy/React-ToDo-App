@@ -37,6 +37,7 @@ const NoteAppProvider = ({ children }) => {
   };
   const [searchText, setSearchText] = useState("");
   const [currentNoteId, setCurrentNoteId] = useState(null);
+  console.log({ currentNoteId });
   const [notes, setNotes] = useState([
     {
       id: nanoid(),
@@ -64,11 +65,6 @@ const NoteAppProvider = ({ children }) => {
     },
   ]);
 
-  // const todoList = notes.map((note) => {
-  //   return note.todoItems.map((todo) => {
-  //     return todo;
-  //   });
-  // });
 
   const addNote = (text) => {
     const date = new Date();
@@ -101,6 +97,20 @@ const NoteAppProvider = ({ children }) => {
     setNotes(editedNote);
   };
 
+  const editNote = (text, title, todoItems) => {
+    const editedNote = notes.map((note) => {
+      if (note.id === currentNoteId) {
+        note.text = text;
+        note.title = title;
+        note.todoItems = todoItems
+      }
+      return note;
+    });
+    setCurrentNoteId(null);
+
+    setNotes(editedNote);
+  };
+
   const currentNoteColor =
     (currentNoteId && notes.find((note) => note.id === currentNoteId)?.color) ||
     DEFAULT_NOTE_COLOR;
@@ -114,13 +124,14 @@ const NoteAppProvider = ({ children }) => {
       value={{
         notes,
         setCurrentNoteId,
+        currentNoteId,
         updateNoteColor,
         addNote,
         deleteNote,
         currentNoteColor,
         searchText,
         setSearchText,
-        // todoList,
+        editNote,
       }}
     >
       {children}

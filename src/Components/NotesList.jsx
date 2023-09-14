@@ -1,15 +1,9 @@
 import React from "react";
-import Note from "./Note";
+import { Note, EditNote, AddNote } from "./";
 import { useNoteAppContext } from "../provider/NoteAppProvider";
 
 function NotesList() {
-  const { notes, searchText, todoList } = useNoteAppContext();
-
-  console.log(notes);
-  console.log(todoList);
-
-  const itemList = notes.map((note) => note.todo);
-  console.log(itemList);
+  const { notes, searchText, currentNoteId } = useNoteAppContext();
 
   return (
     <div className="notes-list">
@@ -32,6 +26,14 @@ function NotesList() {
             color={note.color}
           />
         ))}
+      {notes
+        .filter((note) => {
+          return note.id === currentNoteId;
+        })
+        .map((note) => (
+          <EditNote key={note.id} title={note.title} text={note.text} todoItems={note.todoItems}/>
+        ))}
+      <AddNote />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NotesList, Header, ColorPalette, NavBar, EditNote, AddNote } from "./";
+import { NotesList, Header, ColorPalette, NavBar } from "./";
 import NoteAppProvider from "../provider/NoteAppProvider";
 
 function NoteApp() {
@@ -23,8 +23,6 @@ function NoteApp() {
         </div>
       </div>
       <ColorPalette />
-      <EditNote />
-      <AddNote />
     </NoteAppProvider>
   );
 }

@@ -127,12 +127,18 @@ textarea:focus {
   color: white;
 }
 
+.dropdown-menu {
+  background-color: white;
+  min-width: 10rem;
+}
+
 .list-group-item {
   padding: 0.75rem 0.25rem;
   background-color: transparent;
 }
 
-.dropdown-menu {
-  background-color: #424442c8;
-  min-width: 5rem;
+.form-check-input {
+  margin-right: 0.5rem;
+  background-color: transparent;
+  border-color: #282c34;
 }
