@@ -13,7 +13,7 @@ body {
 /* Note-App Styling Below */
 .header {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 1rem;
 }
@@ -28,7 +28,7 @@ body {
   color: white;
 }
 
-.container {
+.note-app-container {
   max-width: 960px;
   margin-right: auto;
   margin-left: auto;
@@ -141,4 +141,27 @@ textarea:focus {
   margin-right: 0.5rem;
   background-color: transparent;
   border-color: #282c34;
+}
+
+#editNoteTitle {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+}
+#editNoteTodoItem {
+  background-color: transparent;
+}
+.addTodoItem {
+  background-color: transparent;
+  border: none;
+  color: grey;
+}
+
+.todoItemList {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+::placeholder {
+  color: black;
 }

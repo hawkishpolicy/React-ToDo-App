@@ -1,61 +1,55 @@
 // Desc: This file contains the color palette component. This component is a modal that pops up when the user clicks on the color palette icon in the note component. The color palette component is a modal that contains a color picker component from react-color.
 
 import React from "react";
-import { CirclePicker } from "react-color";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import { useNoteAppContext } from '../provider/NoteAppProvider'
+import { CirclePicker } from "react-color";
+import PaletteIcon from '@mui/icons-material/Palette';
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
-function ColorPalette() {
-  const { updateNoteColor, currentNoteColor  } = useNoteAppContext()
+
+function ColorPalette({id, color}) {
+  ColorPalette.propTypes = {
+  id: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  }
+
+  const { updateNoteColor } = useNoteAppContext()
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   
 
   const handleChangeComplete = (color) => {
-    updateNoteColor(color.hex);
-    console.log({ noteColor: color.hex });
+    updateNoteColor(color.hex, id);
   };
 
   return (
     <div>
-      <div
-        className="modal fade"
-        id="colorPickerModal"
-        tabIndex="-1"
-        aria-labelledby="colorPickerModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-sm">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="colorPickerModalLabel">
-                Pick a Color
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body d-flex justify-content-center ">
-              <CirclePicker
-                color={currentNoteColor}
+      <PaletteIcon onClick={handleShow}/>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Select Color</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="d-flex justify-content-center">
+        <CirclePicker
+                color={color}
                 onChangeComplete={handleChangeComplete}
               />
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

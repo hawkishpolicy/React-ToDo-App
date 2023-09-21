@@ -26,7 +26,7 @@ const NoteAppProviderContext = createContext({
   // eslint-disable-next-line no-unused-vars
   filterNotes: (_searchText) => {
     // no-op
-  }
+  },
 });
 
 export const useNoteAppContext = () => useContext(NoteAppProviderContext);
@@ -36,43 +36,55 @@ const NoteAppProvider = ({ children }) => {
     children: PropTypes.node.isRequired,
   };
   const [searchText, setSearchText] = useState("");
-  const [currentNoteId, setCurrentNoteId] = useState(null);
-  console.log({ currentNoteId });
   const [notes, setNotes] = useState([
     {
       id: nanoid(),
       title: "Home",
-      text: "This is my first note!",
-      todoItems: [{id: nanoid(), item: "Take out trash", completed: false}, {id: nanoid(), item: "Call Ricky", completed: false}],
+      todoItems: [
+        { id: nanoid(), item: "Take out trash", completed: false },
+        { id: nanoid(), item: "Call Ricky", completed: false },
+      ],
       date: "05/05/2021",
       color: DEFAULT_NOTE_COLOR,
     },
     {
       id: nanoid(),
       title: "Work",
-      text: "This is my second note!",
-      todoItems: [{id: nanoid(), item: "Finish Note App", completed: false}, {id: nanoid(), item: "Finish Code Review", completed: false}],
+      todoItems: [
+        { id: nanoid(), item: "Finish Note App", completed: false },
+        { id: nanoid(), item: "Finish Code Review", completed: false },
+      ],
       date: "10/05/2021",
       color: "#8acefe",
     },
     {
       id: nanoid(),
       title: "Running",
-      text: "This is my third note!",
-      todoItems: [{id: nanoid(), item: "Threshold Workout", completed: false}, {id: nanoid(), item: "Long Run Saturday", completed: false}],
+      todoItems: [
+        { id: nanoid(), item: "Threshold Workout", completed: false },
+        { id: nanoid(), item: "Long Run Saturday", completed: false },
+      ],
       date: "15/05/2021",
       color: "#8efe8a",
     },
+    {
+      id: nanoid(),
+      title: "Audrey",
+      todoItems: [
+        { id: nanoid(), item: "Field Trip", completed: false },
+        { id: nanoid(), item: "Snorkeling", completed: false },
+      ],
+      date: "15/05/2021",
+      color: "#fe8a8a",
+    },
   ]);
 
-
-  const addNote = (text) => {
+  const addNote = (title, item) => {
     const date = new Date();
     const newNote = {
       id: nanoid(),
-      title: text,
-      text: text,
-      todoItems: [{id: nanoid(), item: text, completed: false}],
+      title: title,
+      todoItems: [{ id: nanoid(), item: item, completed: false }],
       date: date.toLocaleDateString(),
       color: DEFAULT_NOTE_COLOR,
     };
@@ -80,40 +92,66 @@ const NoteAppProvider = ({ children }) => {
     setNotes(newNotes);
   };
 
+  const addTodoItem = (text, id) => {
+    const newItem = [{ id: nanoid(), item: text, completed: false }];
+    if (id) {
+      const editedNote = notes.map((note) => {
+        if (note.id === id) {
+          note.todoItems = [...note.todoItems, ...newItem];
+        }
+        return note;
+      });
+
+      setNotes(editedNote);
+    }
+  };
+
+  const editNoteTitle = (title, id) => {
+    const newTitle = title;
+    if (id) {
+      const editedNote = notes.map((note) => {
+        if (note.id === id) {
+          note.title = newTitle;
+        }
+        return note;
+      });
+
+      setNotes(editedNote);
+    }
+  };
+
+  const editTodoItem = (todoItem, id) => {
+    const editedItem = todoItem;
+    if (id) {
+      const editedNote = notes.map((note) => {
+        if (todoItem.id === id) {
+          todoItem.item = editedItem;
+        }
+        console.log(editedItem);
+        console.log(id);
+        return note;
+      });
+
+      console.log(editedNote);
+      setNotes(editedNote);
+    }
+  };
+
   const deleteNote = (id) => {
     const newNotes = notes.filter((note) => note.id !== id);
     setNotes(newNotes);
   };
 
-  const updateNoteColor = (color) => {
+  const updateNoteColor = (color, id) => {
     const editedNote = notes.map((note) => {
-      if (note.id === currentNoteId) {
+      if (note.id === id) {
         note.color = color;
       }
       return note;
     });
-    setCurrentNoteId(null);
 
     setNotes(editedNote);
   };
-
-  const editNote = (text, title, todoItems) => {
-    const editedNote = notes.map((note) => {
-      if (note.id === currentNoteId) {
-        note.text = text;
-        note.title = title;
-        note.todoItems = todoItems
-      }
-      return note;
-    });
-    setCurrentNoteId(null);
-
-    setNotes(editedNote);
-  };
-
-  const currentNoteColor =
-    (currentNoteId && notes.find((note) => note.id === currentNoteId)?.color) ||
-    DEFAULT_NOTE_COLOR;
 
   useEffect(() => {
     localStorage.setItem("react-notes-app-data", JSON.stringify(notes));
@@ -123,15 +161,14 @@ const NoteAppProvider = ({ children }) => {
     <NoteAppProviderContext.Provider
       value={{
         notes,
-        setCurrentNoteId,
-        currentNoteId,
         updateNoteColor,
         addNote,
         deleteNote,
-        currentNoteColor,
         searchText,
         setSearchText,
-        editNote,
+        editNoteTitle,
+        addTodoItem,
+        editTodoItem,
       }}
     >
       {children}

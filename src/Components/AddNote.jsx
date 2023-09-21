@@ -1,14 +1,21 @@
 import React from "react";
 import { useState } from "react";
-import { useNoteAppContext } from '../provider/NoteAppProvider'
+import { useNoteAppContext } from "../provider/NoteAppProvider";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
 function AddNote() {
-  const { addNote } = useNoteAppContext()
-  const [noteText, setNoteText] = useState("");
+  const { addNote } = useNoteAppContext();
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const [noteTitle, setNoteTitle] = useState("");
-
-  const textCharacterLimit = 200;
+  const [noteItem, setNoteItem] = useState("");
+  const itemCharacterLimit = 200;
 
   const titleCharacterLimit = 20;
 
@@ -18,22 +25,55 @@ function AddNote() {
     }
   };
 
-  const handleTextChange = (event) => {
-    if (textCharacterLimit - event.target.value.length >= 0) {
-      setNoteText(event.target.value);
+  const handleItemChange = (event) => {
+    if (itemCharacterLimit - event.target.value.length >= 0) {
+      setNoteItem(event.target.value);
     }
   };
   const handleSaveClick = () => {
-    if (noteText.trim().length > 0) {
-      addNote(noteText, noteTitle);
-      setNoteText("");
+    if (noteTitle.trim().length > 0) {
+      addNote(noteTitle, noteItem);
       setNoteTitle("");
+    } else {
+      alert("Please enter a title");
     }
   };
 
   return (
     <div>
-      <div
+      <AddBoxIcon fontSize="large" className="me-2" onClick={handleShow} />
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <textarea
+              rows="1"
+              placeholder="Title"
+              onChange={handleTitleChange}
+              value={noteTitle}
+              id="noteTitle"
+            ></textarea>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <textarea
+            rows="1"
+            placeholder="Item"
+            onChange={handleItemChange}
+            value={noteItem}
+            id="noteItem"
+          ></textarea>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSaveClick}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* <div
         className="modal fade"
         id="newNoteModal"
         tabIndex="-1"
@@ -85,7 +125,7 @@ function AddNote() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
