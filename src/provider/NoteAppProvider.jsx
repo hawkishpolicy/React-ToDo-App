@@ -41,7 +41,7 @@ const NoteAppProvider = ({ children }) => {
       id: nanoid(),
       title: "Home",
       todoItems: [
-        { id: nanoid(), item: "Take out trash", completed: false },
+        { id: nanoid(), item: "Take out trash", completed: true },
         { id: nanoid(), item: "Call Ricky", completed: false },
       ],
       date: "05/05/2021",
@@ -51,8 +51,8 @@ const NoteAppProvider = ({ children }) => {
       id: nanoid(),
       title: "Work",
       todoItems: [
-        { id: nanoid(), item: "Finish Note App", completed: false },
-        { id: nanoid(), item: "Finish Code Review", completed: false },
+        { id: nanoid(), item: "Finish Note App", completed: true },
+        { id: nanoid(), item: "Finish Code Review", completed: true },
       ],
       date: "10/05/2021",
       color: "#8acefe",
@@ -124,17 +124,28 @@ const NoteAppProvider = ({ children }) => {
     const editedItem = todoItem;
     if (id) {
       const editedNote = notes.map((note) => {
-        if (todoItem.id === id) {
-          todoItem.item = editedItem;
-        }
-        console.log(editedItem);
-        console.log(id);
+        note.todoItems.map((todoItem) => {
+          if (todoItem.id === id) {
+            todoItem.item = editedItem;
+          }
+          return todoItem;
+        });
         return note;
       });
 
-      console.log(editedNote);
       setNotes(editedNote);
     }
+  };
+
+  const editNoteColor = (color, id) => {
+    const editedNote = notes.map((note) => {
+      if (note.id === id) {
+        note.color = color;
+      }
+      return note;
+    });
+    
+    setNotes(editedNote);
   };
 
   const deleteNote = (id) => {
@@ -142,16 +153,28 @@ const NoteAppProvider = ({ children }) => {
     setNotes(newNotes);
   };
 
-  const updateNoteColor = (color, id) => {
+  const deleteTodoItem = (id) => {
     const editedNote = notes.map((note) => {
-      if (note.id === id) {
-        note.color = color;
-      }
+      note.todoItems = note.todoItems.filter((todoItem) => todoItem.id !== id);
+      return note;
+    }
+    );
+    setNotes(editedNote);
+  }
+
+  const checkTodoItem = (id) => {
+    const editedNote = notes.map((note) => {
+      note.todoItems.map((todoItem) => {
+        if (todoItem.id === id) {
+          todoItem.completed = !todoItem.completed;
+        }
+        return todoItem;
+      });
       return note;
     });
 
     setNotes(editedNote);
-  };
+  }
 
   useEffect(() => {
     localStorage.setItem("react-notes-app-data", JSON.stringify(notes));
@@ -161,7 +184,7 @@ const NoteAppProvider = ({ children }) => {
     <NoteAppProviderContext.Provider
       value={{
         notes,
-        updateNoteColor,
+        editNoteColor,
         addNote,
         deleteNote,
         searchText,
@@ -169,6 +192,8 @@ const NoteAppProvider = ({ children }) => {
         editNoteTitle,
         addTodoItem,
         editTodoItem,
+        deleteTodoItem,
+        checkTodoItem
       }}
     >
       {children}

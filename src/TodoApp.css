@@ -58,26 +58,6 @@ body {
   background-color: #8fdd71;
 }
 
-textarea {
-  border: none;
-  resize: none;
-}
-
-textarea:focus {
-  outline: none;
-}
-
-.save {
-  background-color: #e1e1e1;
-  border: none;
-  border-radius: 15px;
-  padding: 5px 10px;
-}
-
-.save:hover {
-  background-color: #c1c1c1;
-  cursor: pointer;
-}
 .note {
   margin-bottom: 10px;
   border-radius: 10px;
@@ -95,53 +75,20 @@ textarea:focus {
   align-items: center;
 }
 
-.bi-trash3-fill {
-  cursor: pointer;
-}
-
-.bi-trash3-fill:hover {
-  color: red;
-}
-
-.bi-palette-fill {
-  cursor: pointer;
-}
-
-.bi-palette-fill:hover {
-  color: white;
-}
-
-.bi-pencil-fill {
-  cursor: pointer;
-}
-
-.bi-pencil-fill:hover {
-  color: white;
-}
-
-.bi-three-dots-vertical {
-  cursor: pointer;
-}
-
-.bi-three-dots-vertical:hover {
-  color: white;
-}
-
-.dropdown-menu {
-  background-color: white;
-  min-width: 10rem;
-}
-
-.list-group-item {
-  padding: 0.75rem 0.25rem;
-  background-color: transparent;
-}
-
 .form-check-input {
   margin-right: 0.5rem;
   background-color: transparent;
   border-color: #282c34;
 }
+
+.itemListBackground {
+  margin-top: 0.5rem;
+  border: none;
+}
+/* .itemListBackground .done .itemText {
+  text-decoration: line-through;
+  opacity: 0.5;
+} */
 
 #editNoteTitle {
   background-color: transparent;
@@ -157,11 +104,17 @@ textarea:focus {
   color: grey;
 }
 
-.todoItemList {
-  list-style-type: none;
-  padding-left: 0;
-}
-
 ::placeholder {
   color: black;
+}
+
+.deleteIcon {
+  cursor: pointer;
+}
+.deleteIcon:hover {
+  color: red;
+}
+
+.horizontal-rule {
+  margin: 0.5rem;
 }

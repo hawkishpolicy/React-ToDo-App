@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import EditNote from "./EditNote";
 import ColorPalette from "./ColorPalette";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ItemList from "./ItemList";
 
 function Note({ id, title, todoItems, date, color }) {
   Note.propTypes = {
@@ -22,10 +23,11 @@ function Note({ id, title, todoItems, date, color }) {
 
   const { deleteNote } = useNoteAppContext();
 
-  function handleDeleteClick() {
+  function handleDeleteNoteClick() {
     deleteNote(id);
   }
 
+  
   return (
     <div>
       <div className="note" style={{ backgroundColor: color }}>
@@ -41,26 +43,27 @@ function Note({ id, title, todoItems, date, color }) {
             <ColorPalette id={id} color={color} />
           </div>
         </div>
-        <ul style={{ paddingLeft: "0px" }}>
-          {todoItems?.map((todoItem) => (
-            <li
-              className="list-group-item"
-              key={todoItem.id}
-              style={{ border: "none" }}
-            >
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
-                value={todoItem.completed}
-              />
-              <label className="form-check-label">{todoItem.item}</label>
-            </li>
+        <div className="itemListBackground" style={{ paddingLeft: "0px" }}>
+          {todoItems?.filter((todoItem) => {
+          return todoItem.completed === false;
+          }).map((todoItem) => (
+            <ItemList todoItem={todoItem} key={todoItem.id} />
           ))}
-        </ul>
+        </div>
+        <hr className="horizontal-rule"/>
+        <div className="itemListBackground" style={{ paddingLeft: "0px" }}>
+          {todoItems?.filter((todoItem) => {
+          return todoItem.completed === true;
+          }).map((todoItem) => (
+            <ItemList todoItem={todoItem} key={todoItem.id} />
+          ))}
+        </div>
         <div className="note-footer">
           <small>{date}</small>
-          <DeleteForeverIcon onClick={handleDeleteClick} />
+          <DeleteForeverIcon
+            className="deleteIcon"
+            onClick={handleDeleteNoteClick}
+          />
         </div>
       </div>
     </div>

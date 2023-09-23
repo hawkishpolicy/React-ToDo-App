@@ -16,7 +16,7 @@ function ColorPalette({id, color}) {
   color: PropTypes.string.isRequired,
   }
 
-  const { updateNoteColor } = useNoteAppContext()
+  const { editNoteColor } = useNoteAppContext()
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -24,7 +24,7 @@ function ColorPalette({id, color}) {
   
 
   const handleChangeComplete = (color) => {
-    updateNoteColor(color.hex, id);
+    editNoteColor(color.hex, id);
   };
 
   return (
