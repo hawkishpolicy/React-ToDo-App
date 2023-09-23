@@ -41,7 +41,7 @@ function AddNote() {
 
   return (
     <div>
-      <AddBoxIcon fontSize="large" className="me-2" onClick={handleShow} />
+      <AddBoxIcon sx={{fontSize: 60}} className="me-2" onClick={handleShow} />
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
