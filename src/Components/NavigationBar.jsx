@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import LogIn from "./LogIn";
 
-function NavBar() {
+function NavigationBar() {
   const { searchText, setSearchText } = useNoteAppContext();
   function handleSearch(event) {
     setSearchText(event.target.value);
@@ -38,59 +38,7 @@ function NavBar() {
         </Container>
       </Navbar>
 
-      {/* <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/note-app">
-            <i
-              className="bi bi-card-checklist"
-              style={{ fontSize: "2.5rem" }}
-            ></i>
-          </a>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              id="searchBar"
-              placeholder="Search"
-              aria-label="Search"
-              value={searchText}
-              onChange={handleSearch}
-            />
-          </form>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div
-            className="collapse navbar-collapse justify-content-end"
-            id="navbarNav"
-          >
-            <div className="navbar-nav">
-              <a
-                className="nav-link active "
-                aria-current="page"
-                href="/log-in"
-                data-bs-toggle="modal"
-                data-bs-target="#loginModal"
-              >
-                <i
-                  className="bi bi-person-circle align-text-center"
-                  style={{ fontSize: "2.5rem" }}
-                  id="login-icon"
-                ></i>
-              </a>
-            </div>
-          </div>
-        </div> */}
-
+    
       {/* Modal Code Below */}
 
        <div
@@ -223,4 +171,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default NavigationBar;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NotesList, Header, NavBar, AddNote } from "./";
+import { NotesList, Header, NavigationBar, AddNote } from "./";
 import NoteAppProvider from "../provider/NoteAppProvider";
 
 function NoteApp() {
@@ -7,7 +7,7 @@ function NoteApp() {
 
   return (
     <NoteAppProvider>
-      <NavBar />
+      <NavigationBar />
       <div className={`${darkMode && "dark-mode"}`}>
         <div className="note-app-container">
           <Header handleToggleDarkMode={setDarkMode} />
