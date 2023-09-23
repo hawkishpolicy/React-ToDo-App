@@ -1,4 +1,3 @@
-export { default as Main } from "./Main";
 export { default as NavigationBar } from "./NavigationBar";
 export { default as NoteApp } from "./NoteApp";
 export { default as NotesList } from "./NotesList";
