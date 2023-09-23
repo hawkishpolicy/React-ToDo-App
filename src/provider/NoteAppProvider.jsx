@@ -46,6 +46,20 @@ const NoteAppProvider = ({ children }) => {
       ],
       date: "05/05/2021",
       color: DEFAULT_NOTE_COLOR,
+      label:[{id: nanoid(), title: "Home"}]
+    },
+    {
+      id: nanoid(),
+      title: "Climbing",
+      todoItems: [
+        { id: nanoid(), item: "Call Alex", completed: true },
+        { id: nanoid(), item: "Plan trip", completed: false },
+        { id: nanoid(), item: "Buy new shoes", completed: false},
+        { id: nanoid(), item: "Send Yellow", completed: false},
+      ],
+      date: "05/05/2021",
+      color: "#fe3a8a",
+      label:[{id: nanoid(), title: "Climbing"}]
     },
     {
       id: nanoid(),

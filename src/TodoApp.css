@@ -69,6 +69,10 @@ body {
   white-space: pre-wrap;
 }
 
+.note:hover {
+  box-shadow: 0 0 15px rgba(33, 33, 33, 0.4);
+}
+
 .note-footer {
   display: flex;
   justify-content: space-between;

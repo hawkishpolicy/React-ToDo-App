@@ -24,6 +24,7 @@ function NotesList() {
             todoItems={note.todoItems}
             date={note.date}
             color={note.color}
+            label={note.label}
           />
         ))}
     </div>

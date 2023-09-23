@@ -6,7 +6,7 @@ import ColorPalette from "./ColorPalette";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ItemList from "./ItemList";
 
-function Note({ id, title, todoItems, date, color }) {
+function Note({ id, title, todoItems, date, color, label }) {
   Note.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -19,6 +19,12 @@ function Note({ id, title, todoItems, date, color }) {
     ).isRequired,
     date: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
+    label: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+      }).isRequired
+    ).isRequired,
   };
 
   const { deleteNote } = useNoteAppContext();
@@ -58,6 +64,13 @@ function Note({ id, title, todoItems, date, color }) {
             <ItemList todoItem={todoItem} key={todoItem.id} />
           ))}
         </div>
+        <div>
+          {label?.map((label) => (
+            <div key={label.id} className="label">
+              <small>{label.title}</small>
+            </div>
+          ))}
+          </div>
         <div className="note-footer">
           <small>{date}</small>
           <DeleteForeverIcon

@@ -9,3 +9,4 @@ export { default as ColorPalette } from "./ColorPalette";
 export { default as EditNote } from "./EditNote";
 export { default as LogIn } from "./LogIn";
 export { default as ItemList } from "./ItemList";
+export { default as NoteDropDown } from "./NoteDropDown";

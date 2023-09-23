@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import { useNoteAppContext } from "../provider/NoteAppProvider";
 import Modal from "react-bootstrap/Modal";
 import EditNoteIcon from "@mui/icons-material/EditNote";
-// import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import AddBoxIcon from "@mui/icons-material/AddBox";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ItemList from "./ItemList";
 import Form from "react-bootstrap/Form";
-import { ModalBody } from "react-bootstrap";
+import  ModalBody  from "react-bootstrap/ModalBody";
 
 
 function EditNote({ id, title, color, todoItems }) {
@@ -79,6 +78,8 @@ function EditNote({ id, title, color, todoItems }) {
                 onKeyDown={handleTitleSubmit}
               />
             </Modal.Title>
+            
+
           </Modal.Header>
           <Modal.Body style={{ backgroundColor: color }}>
             {todoItems
@@ -89,9 +90,10 @@ function EditNote({ id, title, color, todoItems }) {
                 <ItemList todoItem={todoItem} key={todoItem.id} />
               ))}
 
-            <hr className="horizontal-rule"/>
+            <hr className="horizontal-rule" />
             <div className="d-flex flex-row align-items-center">
-              <AddBoxIcon />
+            
+              <AddCircleOutlineIcon />
               <Form.Control
                 style={{ border: "none", backgroundColor: "transparent" }}
                 placeholder="List item"
@@ -100,7 +102,7 @@ function EditNote({ id, title, color, todoItems }) {
                 onKeyDown={handleItemSubmit}
               />
             </div>
-            <hr className="horizontal-rule"/>
+            <hr className="horizontal-rule" />
           </Modal.Body>
 
           <ModalBody style={{ backgroundColor: color, border: "none" }}>
